@@ -1,0 +1,27 @@
+{
+  "name": "date-picker",
+  "version": "1.0.0",
+  "description": "date-picker",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp dev",
+    "build": "gulp build",
+    "devskin": "gulp devskin",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danlu-fed/date-picker.git"
+  },
+  "author": "jazzysnail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danlu-fed/date-picker/issues"
+  },
+  "homepage": "https://github.com/danlu-fed/date-picker#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-less": "^3.3.0"
+  }
+}
