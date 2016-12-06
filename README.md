@@ -1,9 +1,9 @@
-# date-picker
+# laydate
 
 # develop
 
 ``` base
-git clone https://github.com/danlu-fed/date-picker.git
+git clone https://github.com/danlu-fed/laydate.git
 git checkout develop
 npm install
 // dev base-style
