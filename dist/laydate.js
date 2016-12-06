@@ -1,8 +1,9 @@
-﻿/**
+﻿/*
 
  @Name : layDate v1.1 日期控件
  @Author: 贤心
- @Date: 2014-06-25
+ @updater: jazzysnail
+ @Date: 2016-12-06 19:04:57
  @QQ群：176047195
  @Site：http://sentsin.com/layui/laydate
 
@@ -16,6 +17,7 @@ var config =  {
     skin: 'default', //初始化皮肤
     format: 'YYYY-MM-DD', //日期格式
     halfhours: false,
+    autocomplete: false,
     min: '1900-01-01 00:00:00', //最小日期
     max: '2099-12-31 23:59:59', //最大日期
     isv: false,
@@ -53,14 +55,11 @@ Dates.use = function(lib, id){
     doc[tags]('head')[0].appendChild(link);
     link = null;
 };
-// 半小时
+
+// 半小时配置读取
 Dates.halfhours = function () {
-  if (Dates.elem.getAttribute('halfhours') == "true") {
-    return true
-  }else{
-    return false
-  }
-}
+  return Dates.options.halfhours || (Dates.elem.getAttribute('halfhours') === "true" ? true : false) || config.halfhours
+};
 
 Dates.trim = function(str){
     str = str || '';
@@ -189,7 +188,23 @@ Dates.run = function(options){
     elem = options.elem ? S(options.elem) : target;
 
     as.elemv = /textarea|input/.test(elem.tagName.toLocaleLowerCase()) ? 'value' : 'innerHTML';
-    if (('init' in options ? options.init : config.init) && (!elem[as.elemv])) elem[as.elemv] = laydate.now(null, options.format || config.format);
+    if (('init' in options ? options.init : config.init) && (!elem[as.elemv]) && (options.autocomplete || config.autocomplete)) {
+      var timeArr = laydate.now(null, options.format || config.format).match(/\d+/g);
+      var ymd = [timeArr[0],timeArr[1],timeArr[2]];
+      var hms = [timeArr[3],timeArr[4],timeArr[5]];
+      if (options.halfhours || config.halfhours) {
+        // 计算时间
+        if (hms[1] > 30) {
+          hms[0] = Number(hms[0])+1;
+          hms[1] = 0;
+        }else{
+          hms[1] = 30;
+        }
+        hms[2] = 0;
+      }
+      var time = Dates.parse(ymd,hms,options.format || config.format);
+      elem[as.elemv] = time;
+    }
 
     if(even && target.tagName){
         if(!elem || elem === Dates.elem){
@@ -850,7 +865,7 @@ Dates.events = function(){
             /*
              * danlu harfmin 2016年9月19日16:38:34
             */
-            if (Dates.elem.getAttribute('halfhours') === "true") {
+            if (Dates.halfhours()) {
                 if (i === 0) {
                     Dates.each(new Array(24), function(i){
                         str += '<span>'+ i +'</span>';
@@ -897,7 +912,7 @@ Dates.events = function(){
             /*
             *   2016年12月2日，根据丹露半小时限制BUG修复 时修改，
             */
-           if (Dates.elem.getAttribute('halfhours') === "true" && (index ==1) ) {
+           if (Dates.halfhours() && (index ==1) ) {
                 i = i*30;   //分钟数校验的应该是0和30 ,原来是0和1
            };
             if(set){
@@ -915,7 +930,7 @@ Dates.events = function(){
         /*
          * 增加半小时判断 2016年9月20日10:07:54
         */
-        if (Dates.elem.getAttribute('halfhours') === "true" && input.value == 30) {
+        if (Dates.halfhours() && input.value == 30) {
             Dates.addClass(span[1], 'laydate_click');
         }else{
             Dates.addClass(span[input.value|0], 'laydate_click');
