@@ -1,55 +1,235 @@
-/*
- *@Name: laydate-theme-dlblue
- *@Author: guoliang@danlu.com
-*/
+.laydate-icon{
+  border:1px solid #ccc;
+  background-image:url(icon.png)
+}
 
-.laydate-icon {
-  border: 1px solid #ccc;
-  background-image: url(icon.png)
+.box-shadow() {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 7px;
 }
-.box_shadow() {
-  box-shadow: 2px 2px 5px rgba(0,0,0,.1);
-}
+
 .laydate_body {
   .laydate_box {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    color: #333;
+    border: none!important;
     border-radius: 6px;
+    opacity: 1;
+    height: 218px;
+    background-color:#fff;
+    color:#555;
     overflow: hidden;
-    .box_shadow();
-    // 头
-    .laydate_top {
-      box-shadow: 0px 2px 5px rgba(0,0,0,.1);
+    font-family: 'Microsoft Yahei';
+    -webkit-transition: height .2s cubic-bezier(.78,.14,.15,.86), opacity .3s cubic-bezier(.78,.14,.15,.86);
+    transition: height .2s cubic-bezier(.78,.14,.15,.86), opacity .3s cubic-bezier(.78,.14,.15,.86);
+    .box-shadow();
+    &.lay-hide {
+      height: 0;
+      opacity: 0;
     }
-    // 表格
-    .laydate_table {
-      .laydate_void {
-        background: red;
-        &:first-child {
-          border-radius: 6px 0 0 6px;
+    &.lay-show {
+      opacity: 1;
+      height: 218px;
+    }
+    input {
+      background:none!important;
+      color:#fff;
+    }
+    a {
+      color:#555;
+      &:hover {
+        color:#666;
+      }
+    }
+    .laydate_void {
+      cursor: not-allowed!important;
+      -webkit-filter: blur(1px); /* Chrome, Opera */
+         -moz-filter: blur(1px);
+          -ms-filter: blur(1px);
+              filter: blur(1px);
+      &#laydate_ok {
+        -webkit-filter: blur(0px); /* Chrome, Opera */
+           -moz-filter: blur(0px);
+            -ms-filter: blur(0px);
+                filter: blur(0px);
+      }
+      &.laydate_click {
+        .lay-day {
+          color:#fff!important;
         }
-        &:last-child {
-          border-radius: 0 6px 6px 0;
+      }
+      .lay-day {
+        color:#ccc!important;
+        &:hover {
+          background-color: #fff!important;
         }
       }
     }
   }
-  .laydate_ym {
-    .laydate_yms {
-      .box_shadow();
+
+  .laydate_time1 {
+    width: 226px!important;
+    height: 152px!important;
+  }
+
+  .laydate_chprev {
+    border-left:none;
+    border-right:1px solid #36b5ec;
+    cite {
+      border-right-style:solid;
+      border-right-color:#fff;
     }
   }
-  .laydate_time {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    .box_shadow();
+
+  .laydate_chtop cite{
+    border-bottom-color:#fff;
   }
+
+  .laydate_chdown cite, .laydate_body .laydate_ym label{
+    border-top-color:#fff;
+  }
+
+  .laydate_chnext cite{
+    border-left-style:solid;
+    border-left-color:#fff;
+  }
+
+  .laydate_choose {
+    // border-left:1px solid #36b5ec;
+    &:hover {
+      border-bottom-color:#fff;
+    }
+  }
+
+  .laydate_top {
+    border-top:1px solid #36b5ec;
+    background-color:#36b5ec
+  }
+
+  .laydate_click {
+    background-color:#33ace0!important;
+    color:#fff!important;
+    border-radius: 11.5px;
+    .lay-day {
+      background-color:#33ace0!important;
+      color:#fff!important;
+    }
+  }
+
+  .laydate_time {
+    .box-shadow();
+    background-color:#fff;
+  }
+
+  .laydate_table {
+    width: 240px!important;
+    margin: 0!important;
+    border:none;
+    td {
+      border:none;
+      height:21px!important;
+      line-height:21px!important;
+      background-color:#fff;
+      color:#555;
+    }
+    thead {
+      background-color: #36b5ec;
+      color: #fff;
+    }
+    .laydate_nothis {
+      .lay-day {
+        color:#999;
+      }
+      thead {
+        height:21px!important;
+        line-height:21px!important;
+        th {
+          background: #36b5ec;
+          color: #fff;
+        }
+      }
+      tbody tr td .lay-day {
+        border: none;
+        display: inline-block;
+        height: 21px!important;
+        width: 21px!important;
+        border-radius: 50%;
+        line-height: 21px!important;
+        background-color: #fff;
+        color: #555;
+        -webkit-transition: all .3s cubic-bezier(.78,.14,.15,.86);
+        transition: all .3s cubic-bezier(.78,.14,.15,.86);
+        &:hover {
+          background-color:rgba(64,185,237,0.20); color:#36b5ec;
+        }
+      }
+    }
+  }
+
+  .laydate_ym {
+    border:1px solid #36b5ec;
+    background-color:#36b5ec;
+    label {
+      border-top-color:#fff;
+    }
+    .laydate_yms {
+      .box-shadow();
+      border:1px solid #36b5ec;
+      background-color:#36b5ec;
+      color:#fff;
+    }
+  }
+
+  .laydate_y {
+    .laydate_yms {
+      a {
+        border-bottom:1px solid #36b5ec;
+        &:hover {
+          background-color:#5ec4f0;
+          border-radius: 5px;
+        }
+      }
+      .laydate_chdown {
+        border-top:1px solid #36b5ec;
+        border-bottom:none;
+      }
+    }
+  }
+
   .laydate_bottom {
     border: none;
+    input {
+      background-color:#fff;
+      color:#555;
+    }
     #laydate_hms {
-      .laydate_time();
+      background-color:#fff;
+    }
+    .laydate_sj {
+      width:31px!important;
+      border-right:1px solid #ccc;
+      background-color:#fff;
+    }
+    .laydte_hsmtex {
+      border-bottom:1px solid #ccc;
+    }
+    .laydate_v {
+      color:#ccc;
+    }
+    .laydate_btn {
+      a {
+        color: #36b5ec;
+      }
+    }
+  }
+  .laydate_time ,.laydate_bottom #laydate_hms{
+    border:1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    border-color: none;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+      border-color: transparent;
+      background: #ffffff;
     }
   }
 }

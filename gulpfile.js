@@ -18,12 +18,13 @@ gulp.task('test', function() {
     .pipe(gulp.dest('./test/base-style'));
 });
 
-// dev skin config
-gulp.task('skin', function() {
+// build skins
+gulp.task('skin', function(w) {
+  console.log(w);
   return gulp.src('./src/skins/**/*.less')
     .pipe(less({compress: true}))
     .pipe(autoprefixer())
-    .pipe(gulp.dest('./test/skins'));
+    .pipe(gulp.dest('./dist/skins'));
 });
 
 // dev watcher
@@ -32,6 +33,11 @@ gulp.task('dev', ['test'], function() {
 });
 
 // dev skin watcher
-gulp.task('devskin', ['skin'], function() {
-  gulp.watch('./src/skins/**/*.less', ['skin']);
+gulp.task('devskin', null, function() {
+  gulp.watch('./src/skins/**/*.less', function() {
+    return gulp.src('./src/skins/**/*.less')
+      .pipe(less({compress: true}))
+      .pipe(autoprefixer())
+      .pipe(gulp.dest('./test/skins'));
+  });
 });
